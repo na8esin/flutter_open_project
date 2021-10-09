@@ -77,7 +77,10 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ElevatedButton(
-        child: Text('SIGN IN'),
+        child: const Image(
+          image: AssetImage(
+              'assets/images/btn_google_signin_light_normal_web.png'),
+        ),
         onPressed: () async {
           await signInWithGoogle();
         },
@@ -95,7 +98,7 @@ class WellcomeScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Wellcome'),
+          Text('Wellcome!'),
           ElevatedButton(
               onPressed: () async {
                 Navigator.push(
