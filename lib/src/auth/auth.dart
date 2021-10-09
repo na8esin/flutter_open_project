@@ -6,10 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // authの仕組みを理解するサンプル
 
-final authStateChangesProvider = StreamProvider((ref) {
-  return FirebaseAuth.instance.authStateChanges();
-});
-
 Future<UserCredential?> signInWithGoogle() async {
   // Trigger the authentication flow
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -35,6 +31,10 @@ Future<void> main() async {
   await Firebase.initializeApp();
   runApp(ProviderScope(child: MyApp()));
 }
+
+final authStateChangesProvider = StreamProvider((ref) {
+  return FirebaseAuth.instance.authStateChanges();
+});
 
 class MyApp extends HookConsumerWidget {
   @override
