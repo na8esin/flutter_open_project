@@ -4,8 +4,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// authの仕組みを理解するサンプル
-
 final authStateChangesProvider = StreamProvider((ref) {
   return FirebaseAuth.instance.authStateChanges();
 });
@@ -56,7 +54,17 @@ class AuthWidget extends HookConsumerWidget {
               },
               child: Text('SIGN OUT'),
             ),
-            body: WellcomeScreen(),
+            // ここにNavigatorを追加するだけで、AnotherScreenまで行った時に
+            // fabでsign outすると、sign inページに遷移する
+            body: Navigator(
+              pages: const [
+                MaterialPage(
+                  key: ValueKey('WellcomeScreen'),
+                  child: WellcomeScreen(),
+                )
+              ],
+              onPopPage: (route, result) => route.didPop(result),
+            ),
           );
         },
         error: (e, s, d) => Center(child: Text('$e')),
@@ -71,7 +79,6 @@ class SignInScreen extends StatelessWidget {
       child: ElevatedButton(
         child: Text('SIGN IN'),
         onPressed: () async {
-          // googleアカウントを選択するポップアップが起動して選択するとログインできる
           await signInWithGoogle();
         },
       ),
@@ -91,7 +98,6 @@ class WellcomeScreen extends StatelessWidget {
           Text('Wellcome'),
           ElevatedButton(
               onPressed: () async {
-                // この方法だと遷移先でsign outしてもsignInページには移動しない
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => AnotherScreen()),
@@ -104,25 +110,15 @@ class WellcomeScreen extends StatelessWidget {
   }
 }
 
+// このパターンだとScaffoldの子供として現れるので、
+//`SIGN OUT`ボタンはいらなくなる(fabを使えばいい)
 class AnotherScreen extends StatelessWidget {
+  const AnotherScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        Center(child: Text('AnotherScreen')),
-        ElevatedButton(
-            onPressed: () async {
-              // signOutが実行されてもこのページは表示されたまま
-              await FirebaseAuth.instance.signOut();
-
-              // 例えば苦し紛れにこの辺でNavigator.pushなどすると、
-              // SignInScreenからandroidのbackボタンで
-              // このAnotherScreenに戻ってこれる。
-              // その時、firestoreなどに接続するようになってると
-              // 権限の問題でエラーが発生したりする。
-            },
-            child: Text('SIGN OUT'))
-      ],
+      children: const [Center(child: Text('AnotherScreen'))],
     );
   }
 }
