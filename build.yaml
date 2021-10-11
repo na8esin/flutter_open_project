@@ -1,0 +1,14 @@
+targets:
+  $default:
+    builders:
+      freezed:
+        generate_for:
+          include:
+            - lib/**/models/*.dart
+        options:
+          union_key: custom-key
+          union_value_case: pascal
+      json_serializable:
+        generate_for:
+          include:
+            - lib/**/models/*.dart
