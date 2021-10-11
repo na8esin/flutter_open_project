@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'auth/auth_provider.dart';
+import 'projects/projects_screen.dart';
 
-class HomeScreen extends HookConsumerWidget {
+class ScaffoldAndNavigator extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
@@ -16,8 +16,8 @@ class HomeScreen extends HookConsumerWidget {
       body: Navigator(
         pages: const [
           MaterialPage(
-            key: ValueKey('WellcomeScreen'),
-            child: WellcomeScreen(),
+            key: ValueKey('ProjectsScreen'),
+            child: ProjectsScreen(),
           )
         ],
         onPopPage: (route, result) => route.didPop(result),
@@ -55,29 +55,5 @@ class SignInAndOutWithGoogleWidget extends HookConsumerWidget {
           return Center();
         },
         loading: (d) => CircularProgressIndicator());
-  }
-}
-
-class WellcomeScreen extends StatelessWidget {
-  const WellcomeScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(AppLocalizations.of(context)!.projectsTitle),
-          ElevatedButton(
-              onPressed: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Center()),
-                );
-              },
-              child: Text('to another screen'))
-        ],
-      ),
-    );
   }
 }
