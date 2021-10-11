@@ -7,7 +7,6 @@ part 'project.g.dart';
 @freezed
 class Project with _$Project {
   factory Project({
-    required String id,
     String? title,
   }) = _Project;
   factory Project.fromJson(Map<String, Object?> json) =>

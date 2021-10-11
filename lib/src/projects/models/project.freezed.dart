@@ -21,9 +21,8 @@ Project _$ProjectFromJson(Map<String, dynamic> json) {
 class _$ProjectTearOff {
   const _$ProjectTearOff();
 
-  _Project call({required String id, String? title}) {
+  _Project call({String? title}) {
     return _Project(
-      id: id,
       title: title,
     );
   }
@@ -38,7 +37,6 @@ const $Project = _$ProjectTearOff();
 
 /// @nodoc
 mixin _$Project {
-  String get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,7 +48,7 @@ mixin _$Project {
 abstract class $ProjectCopyWith<$Res> {
   factory $ProjectCopyWith(Project value, $Res Function(Project) then) =
       _$ProjectCopyWithImpl<$Res>;
-  $Res call({String id, String? title});
+  $Res call({String? title});
 }
 
 /// @nodoc
@@ -63,14 +61,9 @@ class _$ProjectCopyWithImpl<$Res> implements $ProjectCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
     Object? title = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -84,7 +77,7 @@ abstract class _$ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
   factory _$ProjectCopyWith(_Project value, $Res Function(_Project) then) =
       __$ProjectCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String? title});
+  $Res call({String? title});
 }
 
 /// @nodoc
@@ -98,14 +91,9 @@ class __$ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
     Object? title = freezed,
   }) {
     return _then(_Project(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -117,19 +105,17 @@ class __$ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Project with DiagnosticableTreeMixin implements _Project {
-  _$_Project({required this.id, this.title});
+  _$_Project({this.title});
 
   factory _$_Project.fromJson(Map<String, dynamic> json) =>
       _$$_ProjectFromJson(json);
 
   @override
-  final String id;
-  @override
   final String? title;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Project(id: $id, title: $title)';
+    return 'Project(title: $title)';
   }
 
   @override
@@ -137,7 +123,6 @@ class _$_Project with DiagnosticableTreeMixin implements _Project {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Project'))
-      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('title', title));
   }
 
@@ -146,12 +131,11 @@ class _$_Project with DiagnosticableTreeMixin implements _Project {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Project &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title);
+  int get hashCode => Object.hash(runtimeType, title);
 
   @JsonKey(ignore: true)
   @override
@@ -165,12 +149,10 @@ class _$_Project with DiagnosticableTreeMixin implements _Project {
 }
 
 abstract class _Project implements Project {
-  factory _Project({required String id, String? title}) = _$_Project;
+  factory _Project({String? title}) = _$_Project;
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$_Project.fromJson;
 
-  @override
-  String get id;
   @override
   String? get title;
   @override

@@ -13,9 +13,11 @@ class ProjectsScreen extends HookConsumerWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(AppLocalizations.of(context)!.projectsTitle),
           ListView(
+            shrinkWrap: true,
             children: [
               ...asyncValue.when(
                   data: (data) {
