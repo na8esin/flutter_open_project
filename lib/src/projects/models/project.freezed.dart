@@ -21,9 +21,10 @@ Project _$ProjectFromJson(Map<String, dynamic> json) {
 class _$ProjectTearOff {
   const _$ProjectTearOff();
 
-  _Project call({String? title}) {
+  _Project call({String? title, String? description}) {
     return _Project(
       title: title,
+      description: description,
     );
   }
 
@@ -38,6 +39,7 @@ const $Project = _$ProjectTearOff();
 /// @nodoc
 mixin _$Project {
   String? get title => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +50,7 @@ mixin _$Project {
 abstract class $ProjectCopyWith<$Res> {
   factory $ProjectCopyWith(Project value, $Res Function(Project) then) =
       _$ProjectCopyWithImpl<$Res>;
-  $Res call({String? title});
+  $Res call({String? title, String? description});
 }
 
 /// @nodoc
@@ -62,11 +64,16 @@ class _$ProjectCopyWithImpl<$Res> implements $ProjectCopyWith<$Res> {
   @override
   $Res call({
     Object? title = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -77,7 +84,7 @@ abstract class _$ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
   factory _$ProjectCopyWith(_Project value, $Res Function(_Project) then) =
       __$ProjectCopyWithImpl<$Res>;
   @override
-  $Res call({String? title});
+  $Res call({String? title, String? description});
 }
 
 /// @nodoc
@@ -92,11 +99,16 @@ class __$ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = freezed,
+    Object? description = freezed,
   }) {
     return _then(_Project(
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -105,17 +117,19 @@ class __$ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Project with DiagnosticableTreeMixin implements _Project {
-  _$_Project({this.title});
+  _$_Project({this.title, this.description});
 
   factory _$_Project.fromJson(Map<String, dynamic> json) =>
       _$$_ProjectFromJson(json);
 
   @override
   final String? title;
+  @override
+  final String? description;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Project(title: $title)';
+    return 'Project(title: $title, description: $description)';
   }
 
   @override
@@ -123,7 +137,8 @@ class _$_Project with DiagnosticableTreeMixin implements _Project {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Project'))
-      ..add(DiagnosticsProperty('title', title));
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('description', description));
   }
 
   @override
@@ -131,11 +146,13 @@ class _$_Project with DiagnosticableTreeMixin implements _Project {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Project &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title);
+  int get hashCode => Object.hash(runtimeType, title, description);
 
   @JsonKey(ignore: true)
   @override
@@ -149,12 +166,14 @@ class _$_Project with DiagnosticableTreeMixin implements _Project {
 }
 
 abstract class _Project implements Project {
-  factory _Project({String? title}) = _$_Project;
+  factory _Project({String? title, String? description}) = _$_Project;
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$_Project.fromJson;
 
   @override
   String? get title;
+  @override
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$ProjectCopyWith<_Project> get copyWith =>

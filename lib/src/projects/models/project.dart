@@ -8,6 +8,7 @@ part 'project.g.dart';
 class Project with _$Project {
   factory Project({
     String? title,
+    String? description,
   }) = _Project;
   factory Project.fromJson(Map<String, Object?> json) =>
       _$ProjectFromJson(json);

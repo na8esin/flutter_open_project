@@ -21,7 +21,9 @@ dependencies:
   flutter_hooks: ^0.18.0
   hooks_riverpod: ^1.0.0-dev.9
   google_sign_in: ^5.1.1
-  freezed_annotation: ^0.15.0  
+  google_fonts: ^2.1.0
+  freezed_annotation: ^0.15.0
+  flutter_gallery_assets: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -41,3 +43,8 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+    - packages/flutter_gallery_assets/fonts/google_fonts/WorkSans-Regular.ttf
+    - packages/flutter_gallery_assets/fonts/google_fonts/WorkSans-Medium.ttf
+    - packages/flutter_gallery_assets/fonts/google_fonts/WorkSans-Bold.ttf
+    - packages/flutter_gallery_assets/fonts/google_fonts/WorkSans-Thin.ttf
+    - packages/flutter_gallery_assets/fonts/google_fonts/WorkSans-SemiBold.ttf

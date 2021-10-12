@@ -10,29 +10,39 @@ class ProjectsScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final asyncValue = ref.watch(projectsProvider);
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(AppLocalizations.of(context)!.projectsTitle),
-          ListView(
-            shrinkWrap: true,
-            children: [
-              ...asyncValue.when(
-                  data: (data) {
-                    return data.docs
-                        .map((e) => ListTile(
-                              title: Text('${e.data().title}'),
-                            ))
-                        .toList();
-                  },
-                  error: (e, s, _) => [Text(e.toString())],
-                  loading: (_) => [CircularProgressIndicator()])
-            ],
-          )
-        ],
-      ),
+
+    return CustomScrollView(
+      shrinkWrap: true,
+      slivers: <Widget>[
+        SliverPadding(
+          padding: const EdgeInsets.all(20.0),
+          sliver: SliverList(
+            delegate: SliverChildListDelegate(
+              <Widget>[
+                Text(AppLocalizations.of(context)!.projectsTitle),
+                ...asyncValue.when(
+                    data: (data) {
+                      return data.docs
+                          .map((e) => Card(
+                                  child: ListTile(
+                                title: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text('${e.data().title}'),
+                                ),
+                                subtitle: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text('${e.data().description}'),
+                                ),
+                              )))
+                          .toList();
+                    },
+                    error: (e, s, _) => [Text(e.toString())],
+                    loading: (_) => [CircularProgressIndicator()])
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
