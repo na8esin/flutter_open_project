@@ -13,6 +13,9 @@ class ScaffoldAndNavigator extends HookConsumerWidget {
       appBar: AppBar(
         actions: [SignInAndOutWithGoogleWidget()],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+      ),
       body: Navigator(
         pages: const [
           MaterialPage(

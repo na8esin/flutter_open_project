@@ -27,11 +27,19 @@ class ProjectsScreen extends HookConsumerWidget {
                                   child: ListTile(
                                 title: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text('${e.data().title}'),
+                                  child: Text(
+                                    '${e.data().title}',
+                                    style:
+                                        Theme.of(context).textTheme.headline6,
+                                  ),
                                 ),
                                 subtitle: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text('${e.data().description}'),
+                                  child: Text(
+                                    '${e.data().description}',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2,
+                                  ),
                                 ),
                               )))
                           .toList();
