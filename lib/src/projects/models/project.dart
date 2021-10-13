@@ -9,6 +9,7 @@ class Project with _$Project {
   factory Project({
     String? title,
     String? description,
+    String? ownerUid,
   }) = _Project;
   factory Project.fromJson(Map<String, Object?> json) =>
       _$ProjectFromJson(json);

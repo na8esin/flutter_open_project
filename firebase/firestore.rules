@@ -6,7 +6,8 @@ service cloud.firestore {
     }
 
     match /projects/{projectId} {
-      allow read: if isSignedIn();
+      allow read: if true;
+      allow write: if isSignedIn();
     }
   }
 }

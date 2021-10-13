@@ -10,3 +10,10 @@ A new Flutter project.
 その配下にissuesがある。
 
 issuesにはコメントがつけられないとなぁ。
+
+## pushd
+```
+pushd firebase
+firebase deploy --only firestore:rules
+popd
+```

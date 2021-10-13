@@ -21,10 +21,11 @@ Project _$ProjectFromJson(Map<String, dynamic> json) {
 class _$ProjectTearOff {
   const _$ProjectTearOff();
 
-  _Project call({String? title, String? description}) {
+  _Project call({String? title, String? description, String? ownerUid}) {
     return _Project(
       title: title,
       description: description,
+      ownerUid: ownerUid,
     );
   }
 
@@ -40,6 +41,7 @@ const $Project = _$ProjectTearOff();
 mixin _$Project {
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  String? get ownerUid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +52,7 @@ mixin _$Project {
 abstract class $ProjectCopyWith<$Res> {
   factory $ProjectCopyWith(Project value, $Res Function(Project) then) =
       _$ProjectCopyWithImpl<$Res>;
-  $Res call({String? title, String? description});
+  $Res call({String? title, String? description, String? ownerUid});
 }
 
 /// @nodoc
@@ -65,6 +67,7 @@ class _$ProjectCopyWithImpl<$Res> implements $ProjectCopyWith<$Res> {
   $Res call({
     Object? title = freezed,
     Object? description = freezed,
+    Object? ownerUid = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed
@@ -75,6 +78,10 @@ class _$ProjectCopyWithImpl<$Res> implements $ProjectCopyWith<$Res> {
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      ownerUid: ownerUid == freezed
+          ? _value.ownerUid
+          : ownerUid // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -84,7 +91,7 @@ abstract class _$ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
   factory _$ProjectCopyWith(_Project value, $Res Function(_Project) then) =
       __$ProjectCopyWithImpl<$Res>;
   @override
-  $Res call({String? title, String? description});
+  $Res call({String? title, String? description, String? ownerUid});
 }
 
 /// @nodoc
@@ -100,6 +107,7 @@ class __$ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
   $Res call({
     Object? title = freezed,
     Object? description = freezed,
+    Object? ownerUid = freezed,
   }) {
     return _then(_Project(
       title: title == freezed
@@ -110,6 +118,10 @@ class __$ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      ownerUid: ownerUid == freezed
+          ? _value.ownerUid
+          : ownerUid // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -117,7 +129,7 @@ class __$ProjectCopyWithImpl<$Res> extends _$ProjectCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Project with DiagnosticableTreeMixin implements _Project {
-  _$_Project({this.title, this.description});
+  _$_Project({this.title, this.description, this.ownerUid});
 
   factory _$_Project.fromJson(Map<String, dynamic> json) =>
       _$$_ProjectFromJson(json);
@@ -126,10 +138,12 @@ class _$_Project with DiagnosticableTreeMixin implements _Project {
   final String? title;
   @override
   final String? description;
+  @override
+  final String? ownerUid;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Project(title: $title, description: $description)';
+    return 'Project(title: $title, description: $description, ownerUid: $ownerUid)';
   }
 
   @override
@@ -138,7 +152,8 @@ class _$_Project with DiagnosticableTreeMixin implements _Project {
     properties
       ..add(DiagnosticsProperty('type', 'Project'))
       ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('description', description));
+      ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('ownerUid', ownerUid));
   }
 
   @override
@@ -148,11 +163,13 @@ class _$_Project with DiagnosticableTreeMixin implements _Project {
             other is _Project &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.ownerUid, ownerUid) ||
+                other.ownerUid == ownerUid));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, description);
+  int get hashCode => Object.hash(runtimeType, title, description, ownerUid);
 
   @JsonKey(ignore: true)
   @override
@@ -166,7 +183,8 @@ class _$_Project with DiagnosticableTreeMixin implements _Project {
 }
 
 abstract class _Project implements Project {
-  factory _Project({String? title, String? description}) = _$_Project;
+  factory _Project({String? title, String? description, String? ownerUid}) =
+      _$_Project;
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$_Project.fromJson;
 
@@ -174,6 +192,8 @@ abstract class _Project implements Project {
   String? get title;
   @override
   String? get description;
+  @override
+  String? get ownerUid;
   @override
   @JsonKey(ignore: true)
   _$ProjectCopyWith<_Project> get copyWith =>

@@ -7,6 +7,10 @@ final authStateChangesProvider = StreamProvider((ref) {
   return FirebaseAuth.instance.authStateChanges();
 });
 
+getUserCredential() {
+  return FirebaseAuth.instance.currentUser;
+}
+
 Future<UserCredential?> signInWithGoogle() async {
   // Trigger the authentication flow
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();

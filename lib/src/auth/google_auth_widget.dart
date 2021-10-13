@@ -16,7 +16,7 @@ class GoogleAuthWidget extends HookConsumerWidget {
                         'assets/images/btn_google_signin_light_normal_web.png'),
                   ),
                   onPressed: () async {
-                    await signInWithGoogle();
+                    final userCredential = await signInWithGoogle();
                   })
               : TextButton(
                   child: const Icon(Icons.logout),
@@ -30,7 +30,7 @@ class GoogleAuthWidget extends HookConsumerWidget {
         },
         error: (e, s, d) {
           print('$e');
-          return Center();
+          return const SizedBox.shrink();
         },
         loading: (d) => CircularProgressIndicator());
   }

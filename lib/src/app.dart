@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'home_screen.dart';
+import 'pages_navigator.dart';
 import 'colors.dart';
 import 'layout/letter_spacing.dart';
 import 'settings/settings_controller.dart';

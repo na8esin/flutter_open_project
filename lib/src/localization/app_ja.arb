@@ -3,5 +3,6 @@
   "@appTitle": {
     "description": "The title of the application"
   },
-  "projectsTitle": "プロジェクト"
+  "projectsTitle": "プロジェクト",
+  "projectTitleLabel": "プロジェクト名"
 }

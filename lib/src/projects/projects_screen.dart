@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'project_provider.dart';
+import 'new_project_screen.dart';
 import '../auth/google_auth_widget.dart';
 
 class ProjectsScreen extends HookConsumerWidget {
@@ -18,7 +19,10 @@ class ProjectsScreen extends HookConsumerWidget {
         actions: [GoogleAuthWidget()],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.pushNamed(context, NewProjectScreen.routeName);
+        },
       ),
       body: CustomScrollView(
         shrinkWrap: true,
