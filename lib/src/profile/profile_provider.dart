@@ -12,7 +12,7 @@ import '../auth/auth_provider.dart';
 // https://github.com/rrousselGit/river_pod/blob/master/examples/marvel/lib/src/screens/home.dart#L35
 
 final profileRepositoryProvider = Provider((ref) {
-  return ProfileRepository();
+  return ProfileRepository(ref.read);
 });
 
 // widgetでasyncValueを使いたいから

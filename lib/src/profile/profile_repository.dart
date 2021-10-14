@@ -1,7 +1,11 @@
-import 'models/profile.dart';
+import 'package:riverpod/riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'models/profile.dart';
+
 class ProfileRepository {
+  ProfileRepository(this.read);
+  final Reader read;
   final db = FirebaseFirestore.instance;
   static const collectionPath = 'profiles';
 

@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'projects/projects_screen.dart';
 import 'projects/new_project_screen.dart';
+import 'profile/profile_screen.dart';
 
 final pagesNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -19,6 +20,8 @@ class PagesNavigator extends HookConsumerWidget {
             switch (settings.name) {
               case NewProjectScreen.routeName:
                 return NewProjectScreen();
+              case ProfileScreen.routeName:
+                return ProfileScreen();
               default:
                 return const ProjectsScreen();
             }

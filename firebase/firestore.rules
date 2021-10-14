@@ -9,5 +9,10 @@ service cloud.firestore {
       allow read: if true;
       allow write: if isSignedIn();
     }
+
+    match /profiles/{uid} {
+      // 自分のだけ閲覧編集可
+      allow read,write: if isSignedIn() && uid == request.auth.uid;
+    }
   }
 }

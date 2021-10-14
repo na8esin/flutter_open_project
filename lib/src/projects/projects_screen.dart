@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'project_provider.dart';
 import 'new_project_screen.dart';
 import '../auth/google_auth_widget.dart';
+import '../profile/profile_screen.dart';
 
 class ProjectsScreen extends HookConsumerWidget {
   const ProjectsScreen({Key? key}) : super(key: key);
@@ -16,12 +17,19 @@ class ProjectsScreen extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.projectsTitle),
-        actions: [GoogleAuthWidget()],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.restorablePushNamed(context, ProfileScreen.routeName);
+              },
+              icon: const Icon(Icons.person)),
+          GoogleAuthWidget(),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          Navigator.pushNamed(context, NewProjectScreen.routeName);
+          Navigator.restorablePushNamed(context, NewProjectScreen.routeName);
         },
       ),
       body: CustomScrollView(
