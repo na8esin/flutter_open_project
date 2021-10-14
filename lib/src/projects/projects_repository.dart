@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../auth/auth_provider.dart';
 import 'models/project.dart';
 
+// https://riverpod.dev/docs/concepts/combining_providers
 class ProjectsRepository {
   ProjectsRepository(this.read);
   final Reader read;
@@ -18,7 +19,7 @@ class ProjectsRepository {
         );
   }
 
-  add(Project entity) {
+  void add(Project entity) {
     // uidが欲しい
     withConverter().add(entity);
   }

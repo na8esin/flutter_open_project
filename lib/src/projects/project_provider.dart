@@ -2,7 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'projects_repository.dart';
 
-final projectsProvider = StreamProvider((ref) {
+final projectsProvider = StreamProvider.autoDispose((ref) {
   return ProjectsRepository(ref.read).findAll();
 });
 

@@ -35,25 +35,32 @@ class ProjectsScreen extends HookConsumerWidget {
                   ...asyncValue.when(
                       data: (data) {
                         return data.docs
-                            .map((e) => Card(
-                                    child: ListTile(
-                                  title: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      '${e.data().title}',
-                                      style:
-                                          Theme.of(context).textTheme.headline6,
+                            .map((e) => InkWell(
+                                  onTap: () {
+                                    // コメント一覧に遷移
+                                  },
+                                  child: Card(
+                                      child: ListTile(
+                                    title: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        '${e.data().title}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6,
+                                      ),
                                     ),
-                                  ),
-                                  subtitle: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      '${e.data().description}',
-                                      style:
-                                          Theme.of(context).textTheme.bodyText2,
+                                    subtitle: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        '${e.data().description}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2,
+                                      ),
                                     ),
-                                  ),
-                                )))
+                                  )),
+                                ))
                             .toList();
                       },
                       error: (e, s, _) => [Text(e.toString())],
