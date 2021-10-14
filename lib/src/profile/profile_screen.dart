@@ -8,6 +8,23 @@ import '../auth/auth_provider.dart';
 
 final _formKey = GlobalKey<FormState>();
 
+class SafeAreaScaffold extends StatelessWidget {
+  const SafeAreaScaffold({Key? key, required this.child}) : super(key: key);
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.close),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        body: SafeArea(child: child));
+  }
+}
+
 // userという名前はauthのuserとぶつかりがち
 class ProfileScreen extends HookConsumerWidget {
   static const routeName = '/profile';
@@ -16,25 +33,17 @@ class ProfileScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncValue = ref.watch(profileProvider);
-    return asyncValue.when(
-        data: (e) {
-          final profile = e!.data();
-          final nicknameController =
-              useTextEditingController(text: profile?.nickname);
-          final photoUrlController =
-              useTextEditingController(text: profile?.photoUrl);
-
-          return Scaffold(
-            floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.close),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Form(
+    return SafeAreaScaffold(
+      child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: asyncValue.when(
+              data: (e) {
+                final profile = e!.data();
+                final nicknameController =
+                    useTextEditingController(text: profile?.nickname);
+                final photoUrlController =
+                    useTextEditingController(text: profile?.photoUrl);
+                return Form(
                   key: _formKey,
                   child: Column(
                     children: [
@@ -89,14 +98,12 @@ class ProfileScreen extends HookConsumerWidget {
                           child: Text('update'))
                     ],
                   ),
-                ),
-              ),
-            ),
-          );
-        },
-        loading: (_) => CircularProgressIndicator(),
-        error: (e, s, _) => Center(
-              child: Text(e.toString()),
-            ));
+                );
+              },
+              loading: (_) => CircularProgressIndicator(),
+              error: (e, s, _) => Center(
+                    child: Text(e.toString()),
+                  ))),
+    );
   }
 }
