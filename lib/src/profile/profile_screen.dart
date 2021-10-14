@@ -49,7 +49,18 @@ class ProfileScreen extends HookConsumerWidget {
                   ),
                 ),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      final user = ref.read(authRepositoryProvider).getUser();
+                      if (user == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content:
+                                  Text('You are not logged in. Please login.')),
+                        );
+                        return;
+                      }
+                      photoUrlController.text = user.photoURL ?? "";
+                    },
                     child: Text('Apply Goole Account photoUrl')),
                 ElevatedButton(
                     onPressed: () {
