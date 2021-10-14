@@ -5,9 +5,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'project_provider.dart';
 import 'models/project.dart';
+import '../auth/auth_provider.dart';
 
 final _formKey = GlobalKey<FormState>();
 
+// TODO サインアウト状態ならトップへ遷移させる
 class NewProjectScreen extends HookConsumerWidget {
   static const routeName = '/projects/add';
   @override
@@ -56,9 +58,20 @@ class NewProjectScreen extends HookConsumerWidget {
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          final user =
+                              ref.read(authRepositoryProvider).getUser();
+                          if (user == null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text(
+                                      'You are not logged in. Please login.')),
+                            );
+                            return;
+                          }
                           repository.add(Project(
                               title: titleController.text,
-                              description: descriptionController.text));
+                              description: descriptionController.text,
+                              ownerUid: user.uid));
 
                           // If the form is valid, display a snackbar. In the real world,
                           // you'd often call a server or save the information in a database.
