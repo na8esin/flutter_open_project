@@ -52,7 +52,7 @@ class AuthWidget extends HookConsumerWidget {
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
               },
-              child: Text('SIGN OUT'),
+              child: const Text('SIGN OUT'),
             ),
             // ここにNavigatorを追加するだけで、AnotherScreenまで行った時に
             // fabでsign outすると、sign inページに遷移する
@@ -67,8 +67,9 @@ class AuthWidget extends HookConsumerWidget {
             ),
           );
         },
-        error: (e, s, d) => Center(child: Text('$e')),
-        loading: (d) => CircularProgressIndicator());
+        // https://github.com/rrousselGit/riverpod/blob/master/examples/marvel/lib/src/screens/home.dart#L90
+        error: (err, stack) => Center(child: Text('$err')),
+        loading: () => const CircularProgressIndicator());
   }
 }
 
